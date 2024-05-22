@@ -17,12 +17,12 @@
       width: 100%;
       margin: 0;
       font-family: 'Ubuntu', sans-serif;
-      background-color: #f0f2f5;
+      background-color: #7FC7D9;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 0 20px 20px 20px;
     }
 
     #chatbox {
@@ -30,22 +30,34 @@
       max-width: 800px;
       height: 600px;
       border: 1px solid #ddd;
-      background-color: white;
+      background-color: #DCF2F1;
       display: flex;
       flex-direction: column;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-
+    header{
+      margin: 0 auto;
+      background-color: #DCF2F1;
+      border-radius: 0 0 5px 5px;
+      max-width: 100%;
+      margin-bottom: 16px;
+    }
     #messages {
       flex-grow: 1;
       padding: 20px;
       overflow-y: auto;
+    }
+    footer{
+      font-size: small;
+      display: block;
     }
 
     h1{
       font-size: 3rem;
       font-weight: bold;
       display: block;
+      color: #0F1035;
+      padding: 16px;
     }
     .message {
       margin-bottom: 12px;
@@ -56,13 +68,13 @@
 
     .user {
       text-align: right;
-      background-color: #dcf8c6;
+      background-color: #DCF2F1;
       margin-left: 20%;
     }
 
     .bot {
       text-align: left;
-      background-color: #f0f0f0;
+      background-color: #DCF2F1;
       margin-right: 20%;
     }
 
@@ -82,14 +94,14 @@
 
     #sendButton {
       padding: 10px 20px;
-      background-color: #007BFF;
+      background-color: #365486;
       color: white;
       border: none;
       cursor: pointer;
     }
 
     #sendButton:hover {
-      background-color: #0056b3;
+      background-color: #0F1035;
     }
   </style>
   <script>
@@ -133,6 +145,9 @@
       <button id="sendButton" onclick="sendMessage()">Send</button>
     </div>
   </div>
+  <footer>
+    <p>GMO Hackathon 2024 - Team Artificial</p>
+  </footer>
 </body>
 
 </html>
