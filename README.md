@@ -1,19 +1,17 @@
 # GMO-Hackathon-2024
 
-### create environment
+## create develop environment
 
 ```bash
 $ pip install -r requirements.txt
 ```
 
-### start
+## Run with Docker
 
 ```bash
-$ ./start.sh
+$ docker compose up -d
 ```
 
-### access
-
 ```
-http://127.0.0.1:5000
+http://localhost:8080
 ```
