@@ -1,6 +1,8 @@
 from openai import OpenAI
 import recorder
 import config
+from selenium import webdriver
+import time
 
 print("Please speak!\n")
 
@@ -27,3 +29,7 @@ image = client.images.generate(
 )
 
 print(image.data[0].url)
+
+driver = webdriver.Chrome()
+driver.get(image.data[0].url)
+time.sleep(60)
