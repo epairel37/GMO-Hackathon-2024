@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat with Flask</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body,
+    html {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    #chatbox {
+      width: 80%;
+      max-width: 800px;
+      height: 600px;
+      border: 1px solid #ddd;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #messages {
+      flex-grow: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .message {
+      margin-bottom: 12px;
+      line-height: 1.5;
+      padding: 8px;
+      border-radius: 10px;
+    }
+
+    .user {
+      text-align: right;
+      background-color: #dcf8c6;
+      margin-left: 20%;
+    }
+
+    .bot {
+      text-align: left;
+      background-color: #f0f0f0;
+      margin-right: 20%;
+    }
+
+    #input-container {
+      display: flex;
+      padding: 10px 20px;
+      border-top: 1px solid #ddd;
+    }
+
+    #userinput {
+      flex-grow: 1;
+      padding: 10px;
+      border: none;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    #sendButton {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #sendButton:hover {
+      background-color: #0056b3;
+    }
+  </style>
+  <script>
+    function sendMessage() {
+      let input = document.getElementById('userinput');
+      let message = input.value;
+      if (message.trim() === '') return; // Ignore empty messages
+      input.value = ''; // clear input box
+      let messages = document.getElementById('messages');
+      messages.innerHTML += `<div class="message user">${message}</div>`;
+
+      fetch('/message', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            message: message
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          messages.innerHTML += `<div class="message bot">${data.message}</div>`;
+          messages.scrollTop = messages.scrollHeight; // scroll to the bottom
+        });
+    }
+  </script>
+</head>
+
+<body>
+  <div id="chatbox">
+    <div id="messages"></div>
+    <div id="input-container">
+      <input type="text" id="userinput" placeholder="Type a message...">
+      <button id="sendButton" onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+</body>
+
+</html>
